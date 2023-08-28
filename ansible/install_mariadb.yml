@@ -1,0 +1,16 @@
+---
+- name: Install MariaDB
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Install MariaDB server package
+      apt:
+        name: mariadb-server
+        state: present
+
+    - name: Start MariaDB service
+      service:
+        name: mariadb
+        state: started
+        enabled: yes

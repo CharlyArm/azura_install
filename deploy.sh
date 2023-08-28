@@ -1,7 +1,16 @@
 #!/bin/bash
 
 # Ejecutar el playbook de Ansible y mostrar mensaje de éxito
-ansible-playbook ansible/update_upgrade.yml && cat << "EOF"
+ansible-playbook ansible/update_upgrade.yml &&
+
+# Ejecutar el playbook de Ansible para instalar Nginx
+ansible-playbook ansible/install_nginx.yml &&
+
+# Ejecutar el playbook de Ansible para instalar MariaDB
+ansible-playbook ansible/install_mariadb.yml &&
+
+# Mostrar mensaje de éxito
+cat << "EOF"
 
                      ,----,          ,--,    __  ,-.
                    .'   .`|        ,'_ /|  ,' ,'/ /|
