@@ -6,6 +6,9 @@ ansible-playbook ansible/update_upgrade.yml &&
 # Ejecutar el playbook de Ansible para instalar Nginx
 ansible-playbook ansible/install_nginx.yml &&
 
+# Ejecutar el playbook de Ansible para instalar PHP Composer Laravel
+ansible-playbook ansible/install_php_composer_laravel.yml &&
+
 # Ejecutar el playbook de Ansible para instalar MariaDB
 ansible-playbook ansible/install_mariadb.yml &&
 

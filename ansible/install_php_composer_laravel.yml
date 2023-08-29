@@ -1,0 +1,35 @@
+---
+- name:  Install PHP Composer Laravel
+  hosts: localhost
+  connection: local
+  become: yes
+
+  tasks:
+    - name: Install PHP and required extensions
+      apt:
+        name:
+          - php-fpm
+          - php-mbstring
+          - php-xml
+          - php-zip
+          - php-mysql
+          - php-gd
+          - php-curl
+          - php-imagick
+        state: present
+
+    - name: Install Composer globally
+      shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+      args:
+        creates: /usr/local/bin/composer
+
+    - name: Install Laravel globally
+      shell: /usr/local/bin/composer global require laravel/installer
+      args:
+        creates: /root/.config/composer/vendor/bin/laravel
+
+  handlers:
+    - name: Restart Nginx
+      systemd:
+        name: nginx
+        state: restarted

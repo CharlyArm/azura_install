@@ -1,7 +1,7 @@
 ---
 - name: Update and Upgrade Localhost
   hosts: localhost
-  become: yes  # Necesario para obtener privilegios de root
+  become: yes
 
   tasks:
     - name: Update APT cache
