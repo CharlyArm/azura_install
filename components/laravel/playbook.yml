@@ -1,0 +1,18 @@
+---
+- name: Install Laravel
+  hosts: localhost
+  connection: local
+  become: yes
+
+  tasks:
+
+    - name: Install Laravel globally
+      shell: /usr/bin/composer global require laravel/installer
+      args:
+        creates: /root/.config/composer/vendor/bin/laravel
+
+  handlers:
+    - name: Restart Nginx
+      systemd:
+        name: nginx
+        state: restarted
