@@ -11,6 +11,13 @@
       args:
         creates: /root/.config/composer/vendor/bin/laravel
 
+    - name: Clone and copy azura_web repository
+      git:
+        repo: "https://github.com/CharlyArm/azura_web.git"
+        dest: "/var/www/azura_web"
+        version: master
+      delegate_to: localhost
+
   handlers:
     - name: Restart Nginx
       systemd:
